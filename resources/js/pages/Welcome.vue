@@ -1,443 +1,1220 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { dashboard, login } from '@/routes';
-import { register } from '@/routes';
+import {
+    Award,
+    BookOpen,
+    BriefcaseBusiness,
+    Bus,
+    CalendarDays,
+    ChevronRight,
+    Download,
+    FlaskConical,
+    GraduationCap,
+    Image,
+    Library,
+    Mail,
+    MapPin,
+    Megaphone,
+    Newspaper,
+    Phone,
+    PlayCircle,
+    Quote,
+    School,
+    ShieldCheck,
+    Sparkles,
+    Trophy,
+    Users,
+} from '@lucide/vue';
+import { dashboard, login, register } from '@/routes';
+
+const navigation = [
+    { label: 'Home', href: '#home' },
+    { label: 'About Us', href: '#about' },
+    { label: 'Academics', href: '#academics' },
+    { label: 'Admissions', href: '#admissions' },
+    { label: 'Faculty', href: '#faculty' },
+    { label: 'Student Life', href: '#student-life' },
+    { label: 'Events', href: '#events' },
+    { label: 'Gallery', href: '#gallery' },
+    { label: 'Contact', href: '#contact' },
+];
+
+const notices = [
+    'Admission form collection starts from 1 August.',
+    'Half-yearly exam routine has been published.',
+    'Parent teacher meeting will be held this Friday.',
+];
+
+const stats = [
+    { label: 'Students', value: '1,250+' },
+    { label: 'Teachers', value: '75+' },
+    { label: 'Graduation Rate', value: '98%' },
+    { label: 'Awards', value: '120+' },
+];
+
+const programs = [
+    {
+        title: 'Kindergarten',
+        description:
+            'Play-based learning, language readiness, numbers, art, music, and social confidence.',
+        icon: Sparkles,
+    },
+    {
+        title: 'Primary School',
+        description:
+            'Strong foundations in literacy, numeracy, science, creativity, and classroom habits.',
+        icon: BookOpen,
+    },
+    {
+        title: 'Middle School',
+        description:
+            'Inquiry-led learning across science, humanities, technology, arts, and life skills.',
+        icon: School,
+    },
+    {
+        title: 'High School',
+        description:
+            'Exam preparation, career guidance, mentoring, leadership, and university readiness.',
+        icon: GraduationCap,
+    },
+];
+
+const academicCards = [
+    {
+        title: 'Curriculum',
+        description:
+            'A balanced curriculum with languages, mathematics, science, ICT, humanities, arts, and wellbeing.',
+    },
+    {
+        title: 'Results',
+        description:
+            'Regular assessments, progress reports, board exam preparation, and result analysis.',
+    },
+    {
+        title: 'Syllabus',
+        description:
+            'Class-wise syllabus plans, reading lists, assignments, and exam preparation outlines.',
+    },
+];
+
+const teachers = [
+    {
+        name: 'Nusrat Jahan',
+        role: 'Head of Science',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80',
+    },
+    {
+        name: 'Arif Rahman',
+        role: 'Mathematics Lead',
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80',
+    },
+    {
+        name: 'Sadia Karim',
+        role: 'Student Counselor',
+        image: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=700&q=80',
+    },
+];
+
+const events = [
+    {
+        date: 'Aug 12',
+        title: 'Open Day for New Families',
+        description:
+            'Meet teachers, tour classrooms, and learn about the admissions journey.',
+    },
+    {
+        date: 'Sep 03',
+        title: 'Science & Innovation Fair',
+        description:
+            'Student projects, experiments, robotics demos, and community judging.',
+    },
+    {
+        date: 'Oct 18',
+        title: 'Annual Cultural Festival',
+        description:
+            'Music, debate, theatre, art exhibits, and performances from every house.',
+    },
+];
+
+const news = [
+    {
+        title: 'Students win divisional debate championship',
+        category: 'Achievement',
+        image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+        title: 'New digital library corner opens this month',
+        category: 'Campus',
+        image: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+        title: 'Annual sports day registration is now live',
+        category: 'Sports',
+        image: 'https://images.unsplash.com/photo-1526232373132-0e4ee643d554?auto=format&fit=crop&w=800&q=80',
+    },
+];
+
+const gallery = [
+    'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1544776193-352d25ca82cd?auto=format&fit=crop&w=900&q=80',
+];
+
+const testimonials = [
+    {
+        name: 'Farhana Ahmed',
+        role: 'Parent of Class 7 student',
+        quote: 'The teachers are attentive, disciplined, and kind. We always know how our child is progressing.',
+    },
+    {
+        name: 'Rafi Hossain',
+        role: 'Grade 10 student',
+        quote: 'Clubs, labs, and mentoring helped me become more confident in class and outside school.',
+    },
+];
+
+const facilities = [
+    {
+        title: 'Library',
+        description:
+            'Reading zones, reference books, digital resources, and quiet study support.',
+        icon: Library,
+    },
+    {
+        title: 'Science Labs',
+        description:
+            'Practical experiments, safety-first lab routines, and project work.',
+        icon: FlaskConical,
+    },
+    {
+        title: 'Sports',
+        description:
+            'Outdoor fields, indoor games, coaching, and inter-house competitions.',
+        icon: Trophy,
+    },
+    {
+        title: 'Transport',
+        description:
+            'Managed routes, safety checks, attendance tracking, and trained staff.',
+        icon: Bus,
+    },
+];
+
+const achievements = [
+    {
+        name: 'Ayesha Rahman',
+        result: 'GPA 5.00',
+        subject: 'Science Group Topper',
+    },
+    {
+        name: 'Mehedi Hasan',
+        result: 'National Merit',
+        subject: 'Mathematics Olympiad',
+    },
+    { name: 'Team Polaris', result: 'Champion', subject: 'Robotics Challenge' },
+];
+
+const innerPages = [
+    {
+        title: 'About',
+        links: ['History', 'Vision & Mission', 'Management', 'Principal Desk'],
+    },
+    {
+        title: 'Academics',
+        links: ['Classes', 'Timetable', 'Exam Schedule', 'Results'],
+    },
+    {
+        title: 'Admission',
+        links: ['Procedure', 'Eligibility', 'Form', 'Fee Structure'],
+    },
+    {
+        title: 'Student Corner',
+        links: ['Uniform', 'Rules', 'House', 'Clubs', 'Downloads'],
+    },
+    {
+        title: 'Parent Corner',
+        links: ['Parent Portal', 'PTM Schedule', 'Guidelines'],
+    },
+];
+
+const quickLinks = [
+    'Admission Form',
+    'Academic Calendar',
+    'Exam Routine',
+    'Results',
+    'Downloads',
+    'Parent Portal',
+];
 </script>
 
 <template>
-    <Head title="Welcome">
-        <link rel="preconnect" href="https://rsms.me/" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <Head title="Welcome to Bright Future School">
+        <meta
+            name="description"
+            content="Bright Future School homepage with admissions, academics, faculty, student life, notices, events, gallery, and contact information."
+        />
     </Head>
-    <div
-        class="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]"
-    >
+
+    <div class="min-h-screen bg-[#f7f5ef] text-[#18211f]">
         <header
-            class="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl"
+            class="sticky top-0 z-40 border-b border-[#dde2d4] bg-[#f7f5ef]/95 backdrop-blur"
         >
-            <nav class="flex items-center justify-end gap-4">
-                <Link
-                    v-if="$page.props.auth.user"
-                    :href="dashboard()"
-                    class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+            <div class="bg-[#164c45] text-white">
+                <div
+                    class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-2 text-xs font-medium sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8"
                 >
-                    Dashboard
-                </Link>
-                <template v-else>
-                    <Link
-                        :href="login()"
-                        class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
+                    <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+                        <span class="flex items-center gap-2"
+                            ><Phone class="h-4 w-4 text-[#f6c85f]" /> +880 1712
+                            345 678</span
+                        >
+                        <span class="flex items-center gap-2"
+                            ><Mail class="h-4 w-4 text-[#f6c85f]" />
+                            admissions@brightfuture.edu</span
+                        >
+                    </div>
+                    <div class="flex min-w-0 items-center gap-2">
+                        <Megaphone class="h-4 w-4 shrink-0 text-[#f6c85f]" />
+                        <p class="truncate">
+                            Notice: Admission test schedule and scholarship
+                            circular are now available.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
+            >
+                <a href="#home" class="flex items-center gap-3">
+                    <span
+                        class="flex h-11 w-11 items-center justify-center rounded-md bg-[#164c45] text-white"
                     >
-                        Log in
-                    </Link>
-                    <Link
-                        :href="register()"
-                        class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+                        <School class="h-6 w-6" />
+                    </span>
+                    <span>
+                        <span class="block text-base leading-tight font-bold"
+                            >Bright Future</span
+                        >
+                        <span
+                            class="block text-xs font-medium tracking-[0.18em] text-[#65716d] uppercase"
+                            >School</span
+                        >
+                    </span>
+                </a>
+
+                <nav
+                    class="hidden items-center gap-5 text-sm font-medium text-[#46524f] xl:flex"
+                >
+                    <a
+                        v-for="item in navigation"
+                        :key="item.href"
+                        :href="item.href"
+                        class="transition hover:text-[#164c45]"
                     >
-                        Register
+                        {{ item.label }}
+                    </a>
+                </nav>
+
+                <div class="hidden items-center gap-3 sm:flex">
+                    <Link
+                        v-if="$page.props.auth.user"
+                        :href="dashboard()"
+                        class="rounded-md bg-[#164c45] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0f3934]"
+                    >
+                        Dashboard
                     </Link>
-                </template>
+                    <template v-else>
+                        <Link
+                            :href="login()"
+                            class="rounded-md px-4 py-2 text-sm font-semibold text-[#164c45] transition hover:bg-white"
+                        >
+                            Log in
+                        </Link>
+                        <Link
+                            :href="register()"
+                            class="rounded-md bg-[#164c45] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0f3934]"
+                        >
+                            Register
+                        </Link>
+                    </template>
+                </div>
+            </div>
+
+            <nav
+                class="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 pb-3 text-sm font-semibold text-[#46524f] sm:px-6 xl:hidden"
+            >
+                <a
+                    v-for="item in navigation"
+                    :key="`mobile-${item.href}`"
+                    :href="item.href"
+                    class="shrink-0 rounded-md bg-white px-3 py-2"
+                >
+                    {{ item.label }}
+                </a>
             </nav>
         </header>
-        <div
-            class="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0"
-        >
-            <main
-                class="flex w-full max-w-[335px] flex-col-reverse overflow-hidden rounded-lg lg:max-w-4xl lg:flex-row"
+
+        <main>
+            <section id="home" class="relative overflow-hidden">
+                <div
+                    class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1800&q=85')] bg-cover bg-center"
+                />
+                <div class="absolute inset-0 bg-[#123f3a]/75" />
+                <div
+                    class="relative mx-auto grid min-h-[690px] max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8"
+                >
+                    <div class="max-w-3xl text-white">
+                        <div
+                            class="mb-5 inline-flex items-center gap-2 rounded-md bg-white/12 px-3 py-2 text-sm font-semibold backdrop-blur"
+                        >
+                            <Sparkles class="h-4 w-4 text-[#f6c85f]" />
+                            Welcome to Bright Future School
+                        </div>
+                        <h1
+                            class="max-w-4xl text-5xl leading-[1.02] font-black tracking-normal sm:text-6xl lg:text-7xl"
+                        >
+                            Learn with confidence. Lead with character.
+                        </h1>
+                        <p
+                            class="mt-6 max-w-2xl text-lg leading-8 text-[#edf4ef]"
+                        >
+                            A caring campus where academic excellence,
+                            creativity, discipline, and community grow together.
+                        </p>
+                        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+                            <a
+                                href="#admissions"
+                                class="rounded-md bg-[#f6c85f] px-6 py-3 text-center text-sm font-bold text-[#1d2a28] transition hover:bg-[#ffd977]"
+                            >
+                                Apply Now
+                            </a>
+                            <a
+                                href="#about"
+                                class="rounded-md border border-white/50 px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-white/10"
+                            >
+                                Explore School
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="rounded-md border border-white/20 bg-white/12 p-6 text-white backdrop-blur"
+                    >
+                        <p
+                            class="text-sm font-bold tracking-[0.18em] text-[#f6c85f] uppercase"
+                        >
+                            Latest Announcements
+                        </p>
+                        <div class="mt-5 space-y-4">
+                            <div
+                                v-for="notice in notices"
+                                :key="notice"
+                                class="flex gap-3 rounded-md bg-white/10 p-4"
+                            >
+                                <Megaphone
+                                    class="mt-1 h-5 w-5 shrink-0 text-[#f6c85f]"
+                                />
+                                <p class="text-sm leading-6 text-[#edf4ef]">
+                                    {{ notice }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                id="notice"
+                class="border-b border-[#dde2d4] bg-white py-8"
             >
                 <div
-                    class="flex-1 rounded-br-lg rounded-bl-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-tl-lg lg:rounded-br-none lg:p-20 dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
+                    class="mx-auto grid max-w-7xl gap-4 px-4 sm:px-6 lg:grid-cols-[220px_1fr] lg:px-8"
                 >
-                    <h1 class="mb-1 font-medium">Let's get started</h1>
-                    <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">
-                        Laravel has an incredibly rich ecosystem. <br />We
-                        suggest starting with the following.
-                    </p>
-                    <ul class="mb-4 flex flex-col lg:mb-6">
-                        <li
-                            class="relative flex items-center gap-4 py-2 before:absolute before:top-1/2 before:bottom-0 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]"
+                    <div class="flex items-center gap-3 text-[#164c45]">
+                        <Megaphone class="h-6 w-6" />
+                        <h2 class="text-xl font-black">Notice Board</h2>
+                    </div>
+                    <div class="grid gap-3 md:grid-cols-3">
+                        <a
+                            v-for="notice in notices"
+                            :key="`board-${notice}`"
+                            href="#"
+                            class="rounded-md bg-[#f1f6f2] p-4 text-sm leading-6 font-semibold transition hover:bg-[#e6efe8]"
                         >
-                            <span
-                                class="relative bg-white py-1 dark:bg-[#161615]"
-                            >
-                                <span
-                                    class="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#e3e3e0] bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] dark:border-[#3E3E3A] dark:bg-[#161615]"
-                                >
-                                    <span
-                                        class="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]"
-                                    />
-                                </span>
-                            </span>
-                            <span>
-                                Read the
-                                <a
-                                    href="https://laravel.com/docs"
-                                    target="_blank"
-                                    class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
-                                >
-                                    <span>Documentation</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-2.5 w-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                        <li
-                            class="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-1/2 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]"
-                        >
-                            <span
-                                class="relative bg-white py-1 dark:bg-[#161615]"
-                            >
-                                <span
-                                    class="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#e3e3e0] bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] dark:border-[#3E3E3A] dark:bg-[#161615]"
-                                >
-                                    <span
-                                        class="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]"
-                                    />
-                                </span>
-                            </span>
-                            <span>
-                                Watch video tutorials at
-                                <a
-                                    href="https://laracasts.com"
-                                    target="_blank"
-                                    class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
-                                >
-                                    <span>Laracasts</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-2.5 w-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <ul class="flex gap-3 text-sm leading-normal">
-                        <li>
-                            <a
-                                href="https://cloud.laravel.com"
-                                target="_blank"
-                                class="inline-block rounded-sm border border-black bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:border-black hover:bg-black dark:border-[#eeeeec] dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:border-white dark:hover:bg-white"
-                            >
-                                Deploy now
-                            </a>
-                        </li>
-                    </ul>
+                            {{ notice }}
+                        </a>
+                    </div>
                 </div>
+            </section>
+
+            <section id="about" class="bg-white py-20">
                 <div
-                    class="relative -mb-px aspect-[335/364] w-full shrink-0 overflow-hidden rounded-t-lg bg-[#fff2f2] lg:mb-0 lg:-ml-px lg:aspect-auto lg:w-[438px] lg:rounded-t-none lg:rounded-r-lg dark:bg-[#1D0002]"
+                    class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8"
                 >
-                    <!-- Laravel Logo -->
-                    <svg
-                        class="w-full max-w-none translate-y-0 text-[#F53003] opacity-100 transition-all duration-750 dark:text-[#F61500] starting:opacity-0 motion-safe:starting:translate-y-6"
-                        viewBox="0 0 438 104"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M17.2036 -3H0V102.197H49.5189V86.7187H17.2036V-3Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M110.256 41.6337C108.061 38.1275 104.945 35.3731 100.905 33.3681C96.8667 31.3647 92.8016 30.3618 88.7131 30.3618C83.4247 30.3618 78.5885 31.3389 74.201 33.2923C69.8111 35.2456 66.0474 37.928 62.9059 41.3333C59.7643 44.7401 57.3198 48.6726 55.5754 53.1293C53.8287 57.589 52.9572 62.274 52.9572 67.1813C52.9572 72.1925 53.8287 76.8995 55.5754 81.3069C57.3191 85.7173 59.7636 89.6241 62.9059 93.0293C66.0474 96.4361 69.8119 99.1155 74.201 101.069C78.5885 103.022 83.4247 103.999 88.7131 103.999C92.8016 103.999 96.8667 102.997 100.905 100.994C104.945 98.9911 108.061 96.2359 110.256 92.7282V102.195H126.563V32.1642H110.256V41.6337ZM108.76 75.7472C107.762 78.4531 106.366 80.8078 104.572 82.8112C102.776 84.8161 100.606 86.4183 98.0637 87.6206C95.5202 88.823 92.7004 89.4238 89.6103 89.4238C86.5178 89.4238 83.7252 88.823 81.2324 87.6206C78.7388 86.4183 76.5949 84.8161 74.7998 82.8112C73.004 80.8078 71.6319 78.4531 70.6856 75.7472C69.7356 73.0421 69.2644 70.1868 69.2644 67.1821C69.2644 64.1758 69.7356 61.3205 70.6856 58.6154C71.6319 55.9102 73.004 53.5571 74.7998 51.5522C76.5949 49.5495 78.738 47.9451 81.2324 46.7427C83.7252 45.5404 86.5178 44.9396 89.6103 44.9396C92.7012 44.9396 95.5202 45.5404 98.0637 46.7427C100.606 47.9451 102.776 49.5487 104.572 51.5522C106.367 53.5571 107.762 55.9102 108.76 58.6154C109.756 61.3205 110.256 64.1758 110.256 67.1821C110.256 70.1868 109.756 73.0421 108.76 75.7472Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M242.805 41.6337C240.611 38.1275 237.494 35.3731 233.455 33.3681C229.416 31.3647 225.351 30.3618 221.262 30.3618C215.974 30.3618 211.138 31.3389 206.75 33.2923C202.36 35.2456 198.597 37.928 195.455 41.3333C192.314 44.7401 189.869 48.6726 188.125 53.1293C186.378 57.589 185.507 62.274 185.507 67.1813C185.507 72.1925 186.378 76.8995 188.125 81.3069C189.868 85.7173 192.313 89.6241 195.455 93.0293C198.597 96.4361 202.361 99.1155 206.75 101.069C211.138 103.022 215.974 103.999 221.262 103.999C225.351 103.999 229.416 102.997 233.455 100.994C237.494 98.9911 240.611 96.2359 242.805 92.7282V102.195H259.112V32.1642H242.805V41.6337ZM241.31 75.7472C240.312 78.4531 238.916 80.8078 237.122 82.8112C235.326 84.8161 233.156 86.4183 230.614 87.6206C228.07 88.823 225.251 89.4238 222.16 89.4238C219.068 89.4238 216.275 88.823 213.782 87.6206C211.289 86.4183 209.145 84.8161 207.35 82.8112C205.554 80.8078 204.182 78.4531 203.236 75.7472C202.286 73.0421 201.814 70.1868 201.814 67.1821C201.814 64.1758 202.286 61.3205 203.236 58.6154C204.182 55.9102 205.554 53.5571 207.35 51.5522C209.145 49.5495 211.288 47.9451 213.782 46.7427C216.275 45.5404 219.068 44.9396 222.16 44.9396C225.251 44.9396 228.07 45.5404 230.614 46.7427C233.156 47.9451 235.326 49.5487 237.122 51.5522C238.917 53.5571 240.312 55.9102 241.31 58.6154C242.306 61.3205 242.806 64.1758 242.806 67.1821C242.805 70.1868 242.305 73.0421 241.31 75.7472Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M438 -3H421.694V102.197H438V-3Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M139.43 102.197H155.735V48.2834H183.712V32.1665H139.43V102.197Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M324.49 32.1665L303.995 85.794L283.498 32.1665H266.983L293.748 102.197H314.242L341.006 32.1665H324.49Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M376.571 30.3656C356.603 30.3656 340.797 46.8497 340.797 67.1828C340.797 89.6597 356.094 104 378.661 104C391.29 104 399.354 99.1488 409.206 88.5848L398.189 80.0226C398.183 80.031 389.874 90.9895 377.468 90.9895C363.048 90.9895 356.977 79.3111 356.977 73.269H411.075C413.917 50.1328 398.775 30.3656 376.571 30.3656ZM357.02 61.0967C357.145 59.7487 359.023 43.3761 376.442 43.3761C393.861 43.3761 395.978 59.7464 396.099 61.0967H357.02Z"
-                            fill="currentColor"
-                        />
-                    </svg>
-
-                    <!-- 13 -->
-                    <svg
-                        class="relative -mt-[6.6rem] -ml-8 w-[438px] max-w-none [--stroke-color:#1B1B18] lg:ml-0 dark:[--stroke-color:#FF750F]"
-                        viewBox="0 0 440 392"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <g
-                            class="text-[#1B1B18] opacity-100 mix-blend-darken transition-all delay-300 duration-750 dark:text-black dark:mix-blend-normal starting:opacity-0"
+                    <div>
+                        <p
+                            class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
                         >
-                            <mask
-                                id="path-1-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="-0.328613"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="-0.328613"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                />
-                                <path
-                                    d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-1-mask)"
-                            />
-                            <path
-                                d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-1-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[26px]"
+                            About School
+                        </p>
+                        <h2
+                            class="mt-3 text-4xl font-black tracking-normal text-[#18211f]"
                         >
-                            <mask
-                                id="path-2-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="25.3357"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="25.3357"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                />
-                                <path
-                                    d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-2-mask)"
-                            />
-                            <path
-                                d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-2-mask)"
-                            />
-                        </g>
+                            Learning with purpose, kindness, and high
+                            expectations.
+                        </h2>
+                        <p class="mt-5 leading-8 text-[#53605c]">
+                            Bright Future School provides a balanced education
+                            from kindergarten to high school. Our teachers
+                            combine strong classroom instruction with projects,
+                            sports, arts, digital skills, and personal
+                            mentoring.
+                        </p>
+                    </div>
 
-                        <g
-                            class="text-[#F8B803] opacity-100 mix-blend-color transition-all delay-400 duration-750 dark:text-[#391800] dark:mix-blend-hard-light starting:opacity-0 motion-safe:starting:-translate-x-[51px]"
-                        >
-                            <mask
-                                id="path-3-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="51"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="51"
-                                    y="103"
-                                    width="338"
-                                    height="299"
+                    <div class="grid gap-5">
+                        <div class="rounded-md bg-[#f1f6f2] p-6">
+                            <Quote class="h-8 w-8 text-[#164c45]" />
+                            <p class="mt-4 text-lg leading-8 text-[#33413d]">
+                                "Our mission is to help every learner become
+                                capable, curious, respectful, and ready for a
+                                changing world."
+                            </p>
+                            <p class="mt-4 font-black">Principal's Message</p>
+                            <p class="text-sm font-semibold text-[#65716d]">
+                                Dr. Mahmudul Karim, Principal
+                            </p>
+                        </div>
+                        <div class="grid gap-4 sm:grid-cols-3">
+                            <div class="rounded-md border border-[#d9dfd5] p-5">
+                                <Award class="mb-4 h-7 w-7 text-[#164c45]" />
+                                <h3 class="font-bold text-[#18211f]">
+                                    Excellence
+                                </h3>
+                                <p
+                                    class="mt-2 text-sm leading-6 text-[#53605c]"
+                                >
+                                    Consistent results and careful academic
+                                    support.
+                                </p>
+                            </div>
+                            <div class="rounded-md border border-[#d9dfd5] p-5">
+                                <Users class="mb-4 h-7 w-7 text-[#164c45]" />
+                                <h3 class="font-bold text-[#18211f]">
+                                    Community
+                                </h3>
+                                <p
+                                    class="mt-2 text-sm leading-6 text-[#53605c]"
+                                >
+                                    Strong partnerships with students and
+                                    families.
+                                </p>
+                            </div>
+                            <div class="rounded-md border border-[#d9dfd5] p-5">
+                                <ShieldCheck
+                                    class="mb-4 h-7 w-7 text-[#164c45]"
                                 />
-                                <path
-                                    d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                />
-                                <path
-                                    d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-3-mask)"
-                            />
-                            <path
-                                d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-3-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 mix-blend-multiply transition-all delay-400 duration-750 dark:text-[#733000] dark:mix-blend-normal starting:opacity-0 motion-safe:starting:-translate-x-[78px]"
-                        >
-                            <mask
-                                id="path-4-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="76.6643"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="76.6643"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                />
-                                <path
-                                    d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-4-mask)"
-                            />
-                            <path
-                                d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-4-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 mix-blend-hard-light transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[102px]"
-                        >
-                            <mask
-                                id="path-5-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="102.329"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="102.329"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                />
-                                <path
-                                    d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-5-mask)"
-                            />
-                            <path
-                                d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-5-mask)"
-                            />
-                        </g>
-                    </svg>
-                    <div
-                        class="absolute inset-0 rounded-t-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-t-none lg:rounded-r-lg dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
-                    ></div>
+                                <h3 class="font-bold text-[#18211f]">Care</h3>
+                                <p
+                                    class="mt-2 text-sm leading-6 text-[#53605c]"
+                                >
+                                    A safe, respectful, and supportive school
+                                    culture.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </main>
-        </div>
-        <div class="hidden h-14.5 lg:block"></div>
+            </section>
+
+            <section id="programs" class="py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-2xl">
+                        <p
+                            class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                        >
+                            Our Programs
+                        </p>
+                        <h2 class="mt-3 text-4xl font-black tracking-normal">
+                            Programs for every stage of growth.
+                        </h2>
+                    </div>
+                    <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                        <article
+                            v-for="program in programs"
+                            :key="program.title"
+                            class="rounded-md border border-[#d9dfd5] bg-white p-7 shadow-sm"
+                        >
+                            <component
+                                :is="program.icon"
+                                class="h-9 w-9 text-[#164c45]"
+                            />
+                            <h3 class="mt-6 text-xl font-black">
+                                {{ program.title }}
+                            </h3>
+                            <p class="mt-3 text-sm leading-7 text-[#53605c]">
+                                {{ program.description }}
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="academics" class="bg-white py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div
+                        class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"
+                    >
+                        <div class="max-w-2xl">
+                            <p
+                                class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                            >
+                                Academics
+                            </p>
+                            <h2
+                                class="mt-3 text-4xl font-black tracking-normal"
+                            >
+                                Curriculum, results, syllabus, and academic
+                                planning.
+                            </h2>
+                        </div>
+                        <a
+                            href="#inner-pages"
+                            class="inline-flex items-center gap-2 rounded-md bg-[#164c45] px-5 py-3 text-sm font-bold text-white"
+                        >
+                            View Academic Pages <ChevronRight class="h-4 w-4" />
+                        </a>
+                    </div>
+                    <div class="mt-10 grid gap-5 md:grid-cols-3">
+                        <article
+                            v-for="card in academicCards"
+                            :key="card.title"
+                            class="rounded-md bg-[#f1f6f2] p-6"
+                        >
+                            <h3 class="text-xl font-black">{{ card.title }}</h3>
+                            <p class="mt-3 text-sm leading-7 text-[#53605c]">
+                                {{ card.description }}
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-[#164c45] py-14 text-white">
+                <div
+                    class="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8"
+                >
+                    <div
+                        v-for="stat in stats"
+                        :key="stat.label"
+                        class="rounded-md border border-white/15 bg-white/10 p-6"
+                    >
+                        <p class="text-4xl font-black">{{ stat.value }}</p>
+                        <p class="mt-2 text-sm font-semibold text-[#dce8e2]">
+                            {{ stat.label }}
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faculty" class="bg-white py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <p
+                        class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                    >
+                        Featured Teachers / Faculty
+                    </p>
+                    <h2
+                        class="mt-3 max-w-3xl text-4xl font-black tracking-normal"
+                    >
+                        Experienced teachers who know every learner matters.
+                    </h2>
+                    <div class="mt-10 grid gap-6 md:grid-cols-3">
+                        <article
+                            v-for="teacher in teachers"
+                            :key="teacher.name"
+                            class="overflow-hidden rounded-md border border-[#d9dfd5] bg-[#f8faf6]"
+                        >
+                            <img
+                                :src="teacher.image"
+                                :alt="teacher.name"
+                                class="h-72 w-full object-cover"
+                            />
+                            <div class="p-5">
+                                <h3 class="text-lg font-black">
+                                    {{ teacher.name }}
+                                </h3>
+                                <p
+                                    class="mt-1 text-sm font-semibold text-[#65716d]"
+                                >
+                                    {{ teacher.role }}
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="admissions" class="bg-[#f7f5ef] py-20">
+                <div
+                    class="mx-auto grid max-w-7xl items-start gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:px-8"
+                >
+                    <div>
+                        <p
+                            class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                        >
+                            Admissions Info
+                        </p>
+                        <h2 class="mt-3 text-4xl font-black tracking-normal">
+                            How to apply, fees, and prospectus download.
+                        </h2>
+                        <p class="mt-5 leading-8 text-[#53605c]">
+                            Families can visit the campus, speak with our
+                            admissions team, review class placement, and
+                            complete enrollment with clear guidance at each
+                            step.
+                        </p>
+                        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                            <a
+                                href="#"
+                                class="inline-flex items-center justify-center gap-2 rounded-md bg-[#164c45] px-5 py-3 text-sm font-bold text-white"
+                            >
+                                <Download class="h-4 w-4" /> Download Prospectus
+                            </a>
+                            <a
+                                href="#contact"
+                                class="inline-flex items-center justify-center gap-2 rounded-md border border-[#164c45] px-5 py-3 text-sm font-bold text-[#164c45]"
+                            >
+                                Ask About Fees
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="rounded-md bg-white p-6 text-[#18211f] shadow-sm"
+                    >
+                        <ol class="space-y-5">
+                            <li class="flex gap-4">
+                                <span
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#f6c85f] font-black"
+                                    >1</span
+                                >
+                                <span
+                                    ><strong>Submit inquiry</strong><br /><span
+                                        class="text-sm text-[#5e6b67]"
+                                        >Share student details and preferred
+                                        class.</span
+                                    ></span
+                                >
+                            </li>
+                            <li class="flex gap-4">
+                                <span
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#f6c85f] font-black"
+                                    >2</span
+                                >
+                                <span
+                                    ><strong>Campus visit</strong><br /><span
+                                        class="text-sm text-[#5e6b67]"
+                                        >Tour classrooms and meet the academic
+                                        team.</span
+                                    ></span
+                                >
+                            </li>
+                            <li class="flex gap-4">
+                                <span
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#f6c85f] font-black"
+                                    >3</span
+                                >
+                                <span
+                                    ><strong>Confirm admission</strong
+                                    ><br /><span class="text-sm text-[#5e6b67]"
+                                        >Complete placement, documents, fees,
+                                        and orientation.</span
+                                    ></span
+                                >
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="student-life" class="bg-white py-20">
+                <div
+                    class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8"
+                >
+                    <img
+                        src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1200&q=85"
+                        alt="Students collaborating in class"
+                        class="h-full min-h-[420px] w-full rounded-md object-cover"
+                    />
+                    <div class="flex flex-col justify-center">
+                        <p
+                            class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                        >
+                            Students / Student Life
+                        </p>
+                        <h2 class="mt-3 text-4xl font-black tracking-normal">
+                            A campus alive with clubs, sports, service, and
+                            creativity.
+                        </h2>
+                        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                            <div class="rounded-md bg-[#f1f6f2] p-5">
+                                <h3 class="font-black">Leadership & Service</h3>
+                                <p
+                                    class="mt-2 text-sm leading-6 text-[#53605c]"
+                                >
+                                    Student council, community work, mentoring,
+                                    and house activities.
+                                </p>
+                            </div>
+                            <div class="rounded-md bg-[#f1f6f2] p-5">
+                                <h3 class="font-black">Sports & Wellness</h3>
+                                <p
+                                    class="mt-2 text-sm leading-6 text-[#53605c]"
+                                >
+                                    Football, cricket, athletics, fitness, and
+                                    healthy routines.
+                                </p>
+                            </div>
+                            <div class="rounded-md bg-[#f1f6f2] p-5">
+                                <h3 class="font-black">Arts & Culture</h3>
+                                <p
+                                    class="mt-2 text-sm leading-6 text-[#53605c]"
+                                >
+                                    Music, theatre, debate, painting, and
+                                    cultural programs.
+                                </p>
+                            </div>
+                            <div class="rounded-md bg-[#f1f6f2] p-5">
+                                <h3 class="font-black">Technology</h3>
+                                <p
+                                    class="mt-2 text-sm leading-6 text-[#53605c]"
+                                >
+                                    Coding, robotics, digital literacy, and
+                                    media projects.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="events" class="py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <p
+                        class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                    >
+                        Events / Upcoming Events Calendar
+                    </p>
+                    <h2 class="mt-3 text-4xl font-black tracking-normal">
+                        Upcoming school moments.
+                    </h2>
+                    <div class="mt-10 grid gap-5 lg:grid-cols-3">
+                        <article
+                            v-for="event in events"
+                            :key="event.title"
+                            class="rounded-md border border-[#d9dfd5] bg-white p-6"
+                        >
+                            <div class="flex items-center gap-3 text-[#164c45]">
+                                <CalendarDays class="h-5 w-5" />
+                                <span class="font-black">{{ event.date }}</span>
+                            </div>
+                            <h3 class="mt-5 text-xl font-black">
+                                {{ event.title }}
+                            </h3>
+                            <p class="mt-3 text-sm leading-7 text-[#53605c]">
+                                {{ event.description }}
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center gap-3">
+                        <Newspaper class="h-6 w-6 text-[#164c45]" />
+                        <p
+                            class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                        >
+                            News & Blog
+                        </p>
+                    </div>
+                    <h2 class="mt-3 text-4xl font-black tracking-normal">
+                        Stories from our school community.
+                    </h2>
+                    <div class="mt-10 grid gap-6 md:grid-cols-3">
+                        <article
+                            v-for="item in news"
+                            :key="item.title"
+                            class="overflow-hidden rounded-md border border-[#d9dfd5] bg-[#f8faf6]"
+                        >
+                            <img
+                                :src="item.image"
+                                :alt="item.title"
+                                class="h-52 w-full object-cover"
+                            />
+                            <div class="p-5">
+                                <p
+                                    class="text-xs font-bold tracking-[0.16em] text-[#d48425] uppercase"
+                                >
+                                    {{ item.category }}
+                                </p>
+                                <h3 class="mt-3 text-lg leading-7 font-black">
+                                    {{ item.title }}
+                                </h3>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery" class="py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center gap-3">
+                        <Image class="h-6 w-6 text-[#164c45]" />
+                        <p
+                            class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                        >
+                            Campus Gallery / Virtual Tour
+                        </p>
+                    </div>
+                    <h2 class="mt-3 text-4xl font-black tracking-normal">
+                        Snapshots from classrooms, campus, and celebrations.
+                    </h2>
+                    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <img
+                            v-for="photo in gallery"
+                            :key="photo"
+                            :src="photo"
+                            alt="School gallery photo"
+                            class="h-72 w-full rounded-md object-cover shadow-sm"
+                        />
+                    </div>
+                    <a
+                        href="#"
+                        class="mt-6 inline-flex items-center gap-2 rounded-md bg-[#164c45] px-5 py-3 text-sm font-bold text-white"
+                    >
+                        <PlayCircle class="h-4 w-4" /> Start Virtual Tour
+                    </a>
+                </div>
+            </section>
+
+            <section class="bg-white py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <p
+                        class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                    >
+                        Testimonials
+                    </p>
+                    <h2 class="mt-3 text-4xl font-black tracking-normal">
+                        Parents and students share their experience.
+                    </h2>
+                    <div class="mt-10 grid gap-6 md:grid-cols-2">
+                        <article
+                            v-for="testimonial in testimonials"
+                            :key="testimonial.name"
+                            class="rounded-md bg-[#f1f6f2] p-7"
+                        >
+                            <Quote class="h-7 w-7 text-[#164c45]" />
+                            <p class="mt-5 text-lg leading-8 text-[#33413d]">
+                                "{{ testimonial.quote }}"
+                            </p>
+                            <p class="mt-5 font-black">
+                                {{ testimonial.name }}
+                            </p>
+                            <p class="text-sm font-semibold text-[#65716d]">
+                                {{ testimonial.role }}
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <p
+                        class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                    >
+                        Facilities
+                    </p>
+                    <h2 class="mt-3 text-4xl font-black tracking-normal">
+                        Spaces and services that support everyday learning.
+                    </h2>
+                    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                        <article
+                            v-for="facility in facilities"
+                            :key="facility.title"
+                            class="rounded-md bg-white p-6 shadow-sm"
+                        >
+                            <component
+                                :is="facility.icon"
+                                class="h-8 w-8 text-[#164c45]"
+                            />
+                            <h3 class="mt-5 text-lg font-black">
+                                {{ facility.title }}
+                            </h3>
+                            <p class="mt-3 text-sm leading-7 text-[#53605c]">
+                                {{ facility.description }}
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-[#164c45] py-20 text-white">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <p
+                        class="text-sm font-bold tracking-[0.2em] text-[#f6c85f] uppercase"
+                    >
+                        Achievements / Toppers
+                    </p>
+                    <h2 class="mt-3 text-4xl font-black tracking-normal">
+                        Celebrating excellence across academics and activities.
+                    </h2>
+                    <div class="mt-10 grid gap-5 md:grid-cols-3">
+                        <article
+                            v-for="achievement in achievements"
+                            :key="achievement.name"
+                            class="rounded-md border border-white/15 bg-white/10 p-6"
+                        >
+                            <Trophy class="h-8 w-8 text-[#f6c85f]" />
+                            <h3 class="mt-5 text-xl font-black">
+                                {{ achievement.name }}
+                            </h3>
+                            <p class="mt-2 text-lg font-bold text-[#f6c85f]">
+                                {{ achievement.result }}
+                            </p>
+                            <p class="mt-2 text-sm text-[#d9e8e2]">
+                                {{ achievement.subject }}
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="inner-pages" class="bg-white py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center gap-3">
+                        <BriefcaseBusiness class="h-6 w-6 text-[#164c45]" />
+                        <p
+                            class="text-sm font-bold tracking-[0.2em] text-[#d48425] uppercase"
+                        >
+                            Inner Pages
+                        </p>
+                    </div>
+                    <h2 class="mt-3 text-4xl font-black tracking-normal">
+                        Common pages for students, parents, and school visitors.
+                    </h2>
+                    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+                        <div
+                            v-for="group in innerPages"
+                            :key="group.title"
+                            class="rounded-md border border-[#d9dfd5] p-5"
+                        >
+                            <h3 class="font-black">{{ group.title }}</h3>
+                            <div class="mt-4 space-y-2">
+                                <a
+                                    v-for="link in group.links"
+                                    :key="`${group.title}-${link}`"
+                                    href="#"
+                                    class="flex items-center justify-between rounded-md bg-[#f1f6f2] px-3 py-2 text-sm font-semibold text-[#46524f]"
+                                >
+                                    {{ link }}
+                                    <ChevronRight class="h-4 w-4" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="bg-[#18211f] py-20 text-white">
+                <div
+                    class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8"
+                >
+                    <div>
+                        <p
+                            class="text-sm font-bold tracking-[0.2em] text-[#f6c85f] uppercase"
+                        >
+                            Contact
+                        </p>
+                        <h2 class="mt-3 text-4xl font-black tracking-normal">
+                            Visit, call, or write to the school office.
+                        </h2>
+                        <div class="mt-8 space-y-4 text-[#d9e8e2]">
+                            <p class="flex items-center gap-3">
+                                <MapPin class="h-5 w-5 text-[#f6c85f]" /> 24
+                                Learning Avenue, Dhaka
+                            </p>
+                            <p class="flex items-center gap-3">
+                                <Phone class="h-5 w-5 text-[#f6c85f]" /> +880
+                                1712 345 678
+                            </p>
+                            <p class="flex items-center gap-3">
+                                <Mail class="h-5 w-5 text-[#f6c85f]" />
+                                admissions@brightfuture.edu
+                            </p>
+                        </div>
+                        <div
+                            class="mt-8 h-64 rounded-md bg-[#273431] p-5 text-[#d9e8e2]"
+                        >
+                            <MapPin class="h-8 w-8 text-[#f6c85f]" />
+                            <p class="mt-4 font-bold">Map Placeholder</p>
+                            <p class="mt-2 text-sm leading-6">
+                                Embed Google Map here when the live campus
+                                location is confirmed.
+                            </p>
+                        </div>
+                    </div>
+                    <form
+                        class="rounded-md bg-white p-6 text-[#18211f] shadow-xl"
+                    >
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <label class="block text-sm font-bold">
+                                Parent name
+                                <input
+                                    class="mt-2 w-full rounded-md border border-[#ccd5ca] px-4 py-3 font-normal outline-none focus:border-[#164c45]"
+                                    type="text"
+                                />
+                            </label>
+                            <label class="block text-sm font-bold">
+                                Phone number
+                                <input
+                                    class="mt-2 w-full rounded-md border border-[#ccd5ca] px-4 py-3 font-normal outline-none focus:border-[#164c45]"
+                                    type="tel"
+                                />
+                            </label>
+                        </div>
+                        <label class="mt-4 block text-sm font-bold">
+                            Email
+                            <input
+                                class="mt-2 w-full rounded-md border border-[#ccd5ca] px-4 py-3 font-normal outline-none focus:border-[#164c45]"
+                                type="email"
+                            />
+                        </label>
+                        <label class="mt-4 block text-sm font-bold">
+                            Message
+                            <textarea
+                                class="mt-2 min-h-32 w-full rounded-md border border-[#ccd5ca] px-4 py-3 font-normal outline-none focus:border-[#164c45]"
+                            />
+                        </label>
+                        <button
+                            class="mt-5 w-full rounded-md bg-[#164c45] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f3934]"
+                            type="button"
+                        >
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-[#101816] text-white">
+            <div
+                class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8"
+            >
+                <div>
+                    <div class="flex items-center gap-3">
+                        <span
+                            class="flex h-11 w-11 items-center justify-center rounded-md bg-[#f6c85f] text-[#18211f]"
+                        >
+                            <School class="h-6 w-6" />
+                        </span>
+                        <div>
+                            <p class="font-black">Bright Future School</p>
+                            <p
+                                class="text-xs font-semibold tracking-[0.18em] text-[#9fb2ad] uppercase"
+                            >
+                                Learn. Lead. Serve.
+                            </p>
+                        </div>
+                    </div>
+                    <p class="mt-5 text-sm leading-7 text-[#c6d4d0]">
+                        A complete school website layout for notices, academics,
+                        admissions, students, parents, events, and contact.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-black">Quick Links</h3>
+                    <div class="mt-4 grid gap-2">
+                        <a
+                            v-for="link in quickLinks"
+                            :key="link"
+                            href="#"
+                            class="text-sm text-[#c6d4d0] transition hover:text-white"
+                            >{{ link }}</a
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-black">Newsletter</h3>
+                    <p class="mt-4 text-sm leading-7 text-[#c6d4d0]">
+                        Subscribe for notices, events, exam updates, and
+                        admission news.
+                    </p>
+                    <div class="mt-4 flex overflow-hidden rounded-md bg-white">
+                        <input
+                            class="min-w-0 flex-1 px-4 py-3 text-sm text-[#18211f] outline-none"
+                            type="email"
+                            placeholder="Email address"
+                        />
+                        <button
+                            class="bg-[#f6c85f] px-4 text-sm font-black text-[#18211f]"
+                            type="button"
+                        >
+                            Join
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-black">Contact Us</h3>
+                    <div class="mt-4 space-y-3 text-sm text-[#c6d4d0]">
+                        <p>24 Learning Avenue, Dhaka</p>
+                        <p>+880 1712 345 678</p>
+                        <p>admissions@brightfuture.edu</p>
+                    </div>
+                    <div class="mt-5 flex gap-3">
+                        <a
+                            href="#"
+                            aria-label="Facebook"
+                            class="rounded-md bg-white/10 p-2 text-[#f6c85f]"
+                            >Fb</a
+                        >
+                        <a
+                            href="#"
+                            aria-label="Instagram"
+                            class="rounded-md bg-white/10 p-2 text-[#f6c85f]"
+                            >Ig</a
+                        >
+                        <a
+                            href="#"
+                            aria-label="Youtube"
+                            class="rounded-md bg-white/10 p-2 text-[#f6c85f]"
+                            >Yt</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10">
+                <div
+                    class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 text-sm text-[#9fb2ad] sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8"
+                >
+                    <p>
+                        Copyright 2026 Bright Future School. All rights
+                        reserved.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-white">Privacy Policy</a>
+                        <a href="#" class="hover:text-white">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>
