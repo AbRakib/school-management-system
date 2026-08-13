@@ -53,6 +53,7 @@ class StaffModuleSeeder extends Seeder
             Staff::query()->updateOrCreate([
                 'email' => $email,
             ], [
+                'staff_id' => 'STF'.str_pad((string) $user->id, 6, '0', STR_PAD_LEFT),
                 'user_id' => $user->id,
                 'department_id' => $departments->random()->id,
                 'designation_id' => $designation->id,
