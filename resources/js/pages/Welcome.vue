@@ -254,9 +254,19 @@ const quickLinks = [
             name="description"
             content="Bright Future School homepage with admissions, academics, faculty, student life, notices, events, gallery, and contact information."
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin="anonymous"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
     </Head>
 
-    <div class="min-h-screen bg-[#f7f5ef] text-[#18211f]">
+    <div class="front-page min-h-screen bg-[#07111f] text-[#d8e0ed]">
         <header
             class="sticky top-0 z-40 border-b border-[#dde2d4] bg-[#f7f5ef]/95 backdrop-blur"
         >
@@ -1218,3 +1228,189 @@ const quickLinks = [
         </footer>
     </div>
 </template>
+
+<style scoped>
+.front-page {
+    --school-bg: #07111f;
+    --school-bg-deep: #040a14;
+    --school-panel: #0d1728;
+    --school-panel-soft: #111d31;
+    --school-border: rgba(218, 166, 49, 0.18);
+    --school-gold: #daa631;
+    --school-gold-soft: #f0c765;
+    --school-text: #d8e0ed;
+    --school-muted: #8f9db2;
+    --school-white: #f5ead8;
+    background:
+        radial-gradient(
+            circle at 18% 8%,
+            rgba(218, 166, 49, 0.08),
+            transparent 26rem
+        ),
+        radial-gradient(
+            circle at 82% 18%,
+            rgba(50, 92, 140, 0.16),
+            transparent 28rem
+        ),
+        var(--school-bg);
+    color: var(--school-text);
+    font-family: Inter, 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.front-page :where(h1, h2, h3),
+.front-page :where(.font-black) {
+    color: var(--school-white);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0;
+}
+
+.front-page :where(header, footer),
+.front-page :where(section) {
+    background: var(--school-bg) !important;
+}
+
+.front-page :where(section:nth-of-type(even)) {
+    background: #0a1424 !important;
+}
+
+.front-page :where(header) {
+    border-color: var(--school-border) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+}
+
+.front-page :where(header > div:first-child) {
+    background: var(--school-bg-deep) !important;
+    border-bottom: 1px solid var(--school-border);
+}
+
+.front-page :where(nav a, p, span, li, label) {
+    color: inherit;
+}
+
+.front-page
+    :where(
+        [class*='text-[#53605c]'],
+        [class*='text-[#5e6b67]'],
+        [class*='text-[#65716d]'],
+        [class*='text-[#46524f]'],
+        [class*='text-[#9fb2ad]'],
+        [class*='text-[#c6d4d0]'],
+        [class*='text-[#d9e8e2]'],
+        [class*='text-muted']
+    ) {
+    color: var(--school-muted) !important;
+}
+
+.front-page
+    :where(
+        [class*='text-[#d48425]'],
+        [class*='text-[#f6c85f]'],
+        [class*='text-[#164c45]']
+    ) {
+    color: var(--school-gold) !important;
+}
+
+.front-page
+    :where(
+        [class*='bg-[#164c45]'],
+        [class*='bg-[#18211f]'],
+        [class*='bg-[#101816]']
+    ) {
+    background: var(--school-bg-deep) !important;
+}
+
+.front-page
+    :where(
+        [class*='bg-white'],
+        [class*='bg-[#f1f6f2]'],
+        [class*='bg-[#f8faf6]'],
+        article,
+        form
+    ) {
+    background: linear-gradient(
+        180deg,
+        var(--school-panel-soft),
+        var(--school-panel)
+    ) !important;
+    border-color: var(--school-border) !important;
+    color: var(--school-text) !important;
+}
+
+.front-page
+    :where(
+        [class*='border-[#d9dfd5]'],
+        [class*='border-[#dde2d4]'],
+        [class*='border-white'],
+        [class*='border-[#ccd5ca]']
+    ) {
+    border-color: var(--school-border) !important;
+}
+
+.front-page :where([class*='bg-[#f6c85f]']) {
+    background: linear-gradient(
+        135deg,
+        var(--school-gold-soft),
+        var(--school-gold)
+    ) !important;
+    color: #08111f !important;
+}
+
+.front-page :where(a[class*='bg-[#164c45]'], button[class*='bg-[#164c45]']) {
+    background: linear-gradient(
+        135deg,
+        var(--school-gold-soft),
+        var(--school-gold)
+    ) !important;
+    color: #08111f !important;
+}
+
+.front-page :where(a[class*='border-[#164c45]']) {
+    border-color: var(--school-gold) !important;
+    color: var(--school-gold-soft) !important;
+}
+
+.front-page :where(input, textarea) {
+    background: #08111f !important;
+    border-color: var(--school-border) !important;
+    color: var(--school-text) !important;
+}
+
+.front-page :where(input::placeholder, textarea::placeholder) {
+    color: var(--school-muted);
+}
+
+.front-page :where(#home > div:first-child) {
+    filter: saturate(0.72) brightness(0.54);
+}
+
+.front-page :where(#home > div:nth-child(2)) {
+    background:
+        linear-gradient(90deg, rgba(4, 10, 20, 0.96), rgba(7, 17, 31, 0.86)),
+        radial-gradient(
+            circle at 70% 25%,
+            rgba(218, 166, 49, 0.16),
+            transparent 22rem
+        ) !important;
+}
+
+.front-page :where(#home [class*='bg-white/12'], #home [class*='bg-white/10']) {
+    background: rgba(13, 23, 40, 0.78) !important;
+    border: 1px solid var(--school-border);
+}
+
+.front-page :where(img) {
+    border-color: var(--school-border);
+}
+
+.front-page :where(article img, #student-life img, #gallery img) {
+    filter: saturate(0.78) contrast(1.04) brightness(0.82);
+}
+
+.front-page :where(.shadow-sm, .shadow-xl, .shadow-2xl) {
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24) !important;
+}
+
+.front-page :where(a:hover) {
+    color: var(--school-gold-soft) !important;
+}
+</style>

@@ -99,6 +99,7 @@ class GuardianController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:2048'],
             'relationship' => ['required', 'string', 'max:50'],
+            'relation' => ['nullable', Rule::in(['father', 'mother', 'guardian'])],
             'phone' => ['required', 'string', 'max:30'],
             'email' => ['nullable', 'email', 'max:255', Rule::unique('guardians')->ignore($guardian)],
             'occupation' => ['nullable', 'string', 'max:255'],

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'name',
     'image',
     'relationship',
+    'relation',
     'phone',
     'email',
     'occupation',
