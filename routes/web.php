@@ -74,7 +74,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('students/id-cards', [StudentController::class, 'idCards'])
             ->name('students.id-cards');
         Route::resource('students', StudentController::class)
-            ->only(['index', 'show']);
+            ->only(['index', 'show'])
+            ->whereNumber('student');
     });
 
     Route::get('notices', [NoticeController::class, 'index'])->name('notices.index');
@@ -144,7 +145,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('student-categories', StudentCategoryController::class)
             ->only(['index', 'store', 'update', 'destroy']);
         Route::resource('students', StudentController::class)
-            ->except(['index', 'show']);
+            ->except(['index', 'show'])
+            ->whereNumber('student');
     });
 });
 

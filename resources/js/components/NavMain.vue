@@ -18,13 +18,14 @@ import {
 } from '@/components/ui/sidebar';
 import { useCurrentUrl } from '@/composables/useCurrentUrl';
 import type { NavItem } from '@/types';
+import { ref, watch } from 'vue';
 
 export type NavMainItem = NavItem & {
     items?: NavMainItem[];
     method?: 'get' | 'post';
 };
 
-defineProps<{
+const props = defineProps<{
     items: NavMainItem[];
 }>();
 
@@ -39,6 +40,24 @@ const isItemActive = (item: NavMainItem): boolean => {
 
     return item.items?.some(isItemActive) ?? false;
 };
+
+const activeGroupTitle = () =>
+    props.items.find((item) => item.items?.length && isItemActive(item))?.title ??
+    null;
+
+const openGroupTitle = ref<string | null>(activeGroupTitle());
+
+watch(
+    () => props.items,
+    () => {
+        openGroupTitle.value = activeGroupTitle();
+    },
+    { deep: true },
+);
+
+const updateOpenGroup = (title: string, open: boolean) => {
+    openGroupTitle.value = open ? title : null;
+};
 </script>
 
 <template>
@@ -49,7 +68,8 @@ const isItemActive = (item: NavMainItem): boolean => {
                 <Collapsible
                     v-if="item.items?.length"
                     as-child
-                    :default-open="isItemActive(item)"
+                    :open="openGroupTitle === item.title"
+                    @update:open="updateOpenGroup(item.title, $event)"
                     class="group/collapsible"
                 >
                     <SidebarMenuItem>
