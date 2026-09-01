@@ -147,7 +147,3 @@ Create a production build:
 ```bash
 npm run build
 ```
-
-## License
-
-This project is open-sourced software licensed under the MIT license.
