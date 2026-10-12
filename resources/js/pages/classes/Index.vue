@@ -42,7 +42,7 @@ const remove = (schoolClass: SchoolClass) => {
     <div class="space-y-6 p-4 md:p-6">
         <ResourcePageHeader
             title="Classes"
-            description="Manage classrooms from Class 1 through Class 10."
+            description="Manage classrooms from Class 1 through Class 10. Use the section field for Class 10 groups: Science, Commerce, and Arts."
             action-label="Add class"
             action-href="/classes/create"
         />
@@ -55,7 +55,7 @@ const remove = (schoolClass: SchoolClass) => {
                         <tr>
                             <th class="px-3 py-3 font-medium">SL</th>
                             <th class="px-3 py-3 font-medium">Class</th>
-                            <th class="px-3 py-3 font-medium">Section</th>
+                            <th class="px-3 py-3 font-medium">Section / Group</th>
                             <th class="px-3 py-3 font-medium">Room</th>
                             <th class="px-3 py-3 font-medium">Class teacher</th>
                             <th class="px-3 py-3 font-medium">Students</th>

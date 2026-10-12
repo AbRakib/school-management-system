@@ -65,7 +65,7 @@ defineOptions({
     <div class="space-y-6 p-4 md:p-6">
         <ResourcePageHeader
             :title="editing ? 'Edit class' : 'Add class'"
-            description="Configure the grade, room, section, and class teacher."
+            description="Configure the grade, room, section/group, and class teacher."
         />
 
         <Card class="max-w-3xl">
@@ -96,7 +96,7 @@ defineOptions({
                             <InputError :message="form.errors.name" />
                         </div>
                         <div class="grid gap-2">
-                            <Label for="section">Section</Label>
+                            <Label for="section">Section / Group</Label>
                             <Input id="section" v-model="form.section" />
                             <InputError :message="form.errors.section" />
                         </div>

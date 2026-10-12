@@ -109,7 +109,7 @@ defineOptions({
     <div class="space-y-6 p-4 md:p-6">
         <ResourcePageHeader
             :title="editing ? 'Edit student' : 'Add student'"
-            description="Complete the student profile, guardian details, addresses, and optional login account."
+            description="Add the student, class, Class 10 group, and parent details."
         />
 
         <form class="space-y-6" @submit.prevent="submit">
@@ -168,7 +168,7 @@ defineOptions({
                             <InputError :message="form.errors.class_id" />
                         </div>
                         <div class="grid gap-2">
-                            <Label for="section_id">Section</Label>
+                            <Label for="section_id">Section / Group</Label>
                             <select
                                 id="section_id"
                                 v-model="form.section_id"
@@ -176,7 +176,7 @@ defineOptions({
                                 required
                             >
                                 <option value="" disabled>
-                                    Select section
+                                    Select section/group
                                 </option>
                                 <option
                                     v-for="item in sections"

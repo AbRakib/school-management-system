@@ -34,7 +34,11 @@ class StudentSeeder extends Seeder
         $sections = collect();
 
         foreach ($classes as $schoolClass) {
-            foreach (['A', 'B'] as $sectionName) {
+            $sectionNames = $schoolClass->grade_level === 10
+                ? ['Science', 'Commerce', 'Arts']
+                : ['A'];
+
+            foreach ($sectionNames as $sectionName) {
                 $sections->push(Section::query()->updateOrCreate([
                     'school_class_id' => $schoolClass->id,
                     'name' => $sectionName,
@@ -44,9 +48,10 @@ class StudentSeeder extends Seeder
 
         foreach (range(1, 50) as $index) {
             $schoolClass = $classes[($index - 1) % max($classes->count(), 1)];
-            $section = $sections
+            $classSections = $sections
                 ->where('school_class_id', $schoolClass->id)
-                ->values()[($index - 1) % 2];
+                ->values();
+            $section = $classSections[($index - 1) % max($classSections->count(), 1)];
             $gender = $faker->randomElement(['male', 'female', 'other']);
             $relation = $faker->randomElement(['father', 'mother', 'guardian']);
             $admissionNo = 'ADM-'.now()->format('Y').'-'.str_pad((string) $index, 4, '0', STR_PAD_LEFT);
